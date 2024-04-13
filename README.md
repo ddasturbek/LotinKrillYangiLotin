@@ -7,6 +7,43 @@
 
 Dasturdan o‘zbek tilidagi matnlarni yozuv shaklini almashtirishda va yangi lotin alifbosini joriy qilishda foydalanish mumkin!
 
+## Dasturni o‘rnatish
+
+Siz dasturni Python loyihangizga [pip](https://pypi.org/project/LotinKrillYangiLotin) orqali o‘rnatib foydalanishingiz mumkin.
+
+```bash
+pip install LotinKrillYangiLotin
+```
+
+Yoki [Githubdan](https://github.com/ddasturbek/LotinKrillYangiLotin) klonlab foydalanishingiz mumkin.
+
+```bash
+git clone https://github.com/ddasturbek/LotinKrillYangiLotin.git
+```
+
+## Dasturdan foydalanish
+
+```Python
+from LotinKrillYangiLotin import Almashtirish
+# Obyekt yaratish
+almashtir = Almashtirish()
+
+print(almashtir.Lotinga('функция'))  # funksiya
+print(almashtir.Krillga('geometriya'))  # геометрия
+print(almashtir.YangiLotinga('shamol'))  # şamol
+```
+
+Funksiyalar faqat so‘zlarni emas balki matnlarni ham shaklini almashtira oladi.
+
+Birorta shaklga o‘tkazganda qolgan shakllarni o‘zi tanib oladi.
+
+Ya’ni YangiLotinga funksiyasiga Lotincha va Krillcha matnlarni kiritsa bo‘ladi.
+
+```Python
+print(almashtir.YangiLotinga("Shu tizimni o‘rganish va ishlatish qobiliyatiga aytiladi"))  # Şu tizimni ōrganiş va işlatiş qobiliyatiga aytiladi
+print(almashtir.YangiLotinga("Шу тизимни ўрганиш ва ишлатиш қобилиятига айтилади"))  # Şu tizimni ōrganiş va işlatiş qobiliyatiga aytiladi
+```
+
 ## Alifbo haqida
 
 Yangi lotin yozuvi haqida [taklif](https://regulation.gov.uz/oz/d/31596) O‘zbekiston Respublikasi Fanlar akademiyasi tomonidan 'NORMATIV-HUQUQIY HUJJATLAR LOYIHALARI MUHOKAMASI PORTALI'ga muhokamaga qo‘yilgan.
@@ -34,22 +71,3 @@ Harflarni almashtirishda foydalanilgan qoidalar manbalari:
 
 ---
 
-## Dasturni o‘rnatish
-
-Siz dasturni Python loyihangizga [pip](https://pypi.org/project/LotinKrillYangiLotin) orqali o‘rnatib foydalanishingiz mumkin.
-
-```bash
-pip install LotinKrillYangiLotin
-```
-
-## Dasturdan foydalanish
-
-```Python
-from LotinKrillYangiLotin import Almashtirish
-# Obyekt yaratish
-almashtir = Almashtirish()
-
-print(almashtir.Lotinga('функция'))  # funksiya
-print(almashtir.Krillga('geometriya'))  # геометрия
-print(almashtir.YangiLotinga('shamol'))  # şamol
-```
