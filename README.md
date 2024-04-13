@@ -13,7 +13,7 @@ Siz dasturni Python loyihangizga [pip](https://pypi.org/project/LotinKrillYangiL
 pip install LotinKrillYangiLotin
 ```
 
-Yoki [Githubdan](https://github.com/ddasturbek/LotinKrillYangiLotin) klonlab foydalanishingiz mumkin.
+Yoki [githubdan](https://github.com/ddasturbek/LotinKrillYangiLotin) klonlab foydalanishingiz mumkin.
 
 ```bash
 git clone https://github.com/ddasturbek/LotinKrillYangiLotin.git
