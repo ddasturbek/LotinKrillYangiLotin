@@ -1,27 +1,3 @@
-"""
-    Muallif: Dasturbek (github.com/ddasturbek)
-    Versiya: 1.0.0
-
-    Dasturdan o‘zbek tilidagi matnlarni yozuv shaklini almashtirishda
-    va yangi lotin alifbosini joriy qilishda foydalanish mumkin!
-
-    O‘zbek Lotin alifbosida 29 harf va bitta tutuq belgi (’) bor.
-    O‘zbek Krill alifbosida shunga mos, ya’ni 30 ta harf va belgi bor.
-    O‘zbek Yangi lotin alifbosida ham jami 30 ta harf va belgi bor.
-
-    Alifbo bilan to‘liq holda quyida tanishishingiz mumkin:
-    {rasm linki}
-
-    Yangi lotin yozuvi haqida O‘zbekiston Respublikasi Fanlar akademiyasi tomonidan 'NORMATIV-HUQUQIY HUJJATLAR LOYIHALARI MUHOKAMASI PORTALI'ga muhokamaga qo‘yilgan:
-    https://regulation.gov.uz/oz/d/31596
-
-    Harflarni o'girishda foydalanilgan qoidalar manbalari:
-    1. https://uz.wikipedia.org/wiki/Vikipediya:O%CA%BBzbek_lotin_alifbosi_qoidalari
-    2. https://uz.wikipedia.org/wiki/Vikipediya:Imlo_va_grammatika
-
-"""
-
-
 class Almashtirish:
 
     def __init__(self):
@@ -31,7 +7,7 @@ class Almashtirish:
 
     @staticmethod
     def __change_apostrophe(text):
-        # O‘o‘ va G‘g‘ harflarining belgisini almashtirish uchun funksiya
+        # Function to change the character of the letters O‘o‘ and G‘g‘
 
         text = text.replace(f"O{chr(39)}", f"O{chr(8216)}")  # ord("'") -> ord("‘")
         text = text.replace(f"o{chr(39)}", f"o{chr(8216)}")
@@ -61,16 +37,6 @@ class Almashtirish:
         return text
 
     def Lotinga(self, text):  # noqa
-
-        # Krillcha Eе harfi lotinchaga quyidagicha o‘zgartiriladi.
-        # 1) So‘zning boshida yoki unlidan keyin kelsa ye shaklida: егулик - yegulik, поезд - poyezd
-        #    ъ tutuq belgisidan keyin kelsa ъ olib tashlanadi va ye shaklida: подъезд - podyezd
-        # 2) Qolgan barcha holatlarda lotincha Ee shaklida o‘zgartiriladi.
-
-        # Krillchada Цц harfi lotinchaga quyidagicha o‘zgartiriladi.
-        # 1) So‘z boshida yoki undoshdan keyin kelsa s shaklida: цирк-sirk, функция-funksiya
-        # 2) So‘z o‘rtasida unlidan keyin kelsa ts shaklida: доцент-dotsent, процент-protsent
-
         result = ""
         text = self.__change_apostrophe(text)
         for i in range(len(text)):
@@ -188,12 +154,6 @@ class Almashtirish:
         return result
 
     def Krillga(self, text):  # noqa
-
-        # Lotinchada Ee harfi krillchaga quyidagicha o‘zgartiriladi.
-        # 1) So‘zning boshida va unlidan keyin kelsa Ээ shaklida: elak-элак, aeraport-аэропорт
-        # 2) Undosh harfidan keyin kelsa Ее shaklida: temir-темир, kel-кел, geometriya-геометрия
-        #    Yy undoshidan keyin kelsa Yy tushirib qoldirilib Ее shaklida yoziladi: yengil-енгил
-
         result = ""
         text = self.__change_apostrophe(text)
         for i in range(len(text)):
