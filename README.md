@@ -19,7 +19,7 @@ Alifbo bilan to‘liq holda quyida tanishishingiz mumkin.
 
 ![LotinKrillYangiLotin](https://github.com/ddasturbek/LotinKrillYangiLotin/assets/76460501/a36715a4-2108-4179-b127-0409c5525708)
 
-Harflarni o‘girishda foydalanilgan qoidalar manbalari:
+Harflarni almashtirishda foydalanilgan qoidalar manbalari:
 1. [O‘zbek lotin alifbosi qoidalari](https://uz.wikipedia.org/wiki/Vikipediya:O%CA%BBzbek_lotin_alifbosi_qoidalari)
 2. [Imlo va grammatika](https://uz.wikipedia.org/wiki/Vikipediya:Imlo_va_grammatika)
 
@@ -34,4 +34,22 @@ Harflarni o‘girishda foydalanilgan qoidalar manbalari:
 
 ---
 
-## Dasturdan foydalanish.
+## Dasturni o‘rnatish
+
+Siz dasturni Python loyihangizga [pip](https://pypi.org/project/LotinKrillYangiLotin) orqali o‘rnatib foydalanishingiz mumkin.
+
+```bash
+pip install LotinKrillYangiLotin
+```
+
+## Dasturdan foydalanish
+
+```Python
+from LotinKrillYangiLotin import Almashtirish
+# Obyekt yaratish
+almashtir = Almashtirish()
+
+print(almashtir.Lotinga('функция'))  # funksiya
+print(almashtir.Krillga('geometriya'))  # геометрия
+print(almashtir.YangiLotinga('shamol'))  # şamol
+```
