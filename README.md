@@ -1,9 +1,8 @@
-# LotinKrillYangilotin
-
 ## Dastur haqida
 **Muallif: [Dasturbek](https://github.com/ddasturbek)**
-
+**Dastur nomi:** LotinKrillYangilotin
 **Versiya: 1.0.0**
+**Dastur tili:** Python
 
 Dasturdan o‘zbek tilidagi matnlarni yozuv shaklini almashtirishda va yangi lotin alifbosini joriy qilishda foydalanish mumkin!
 
