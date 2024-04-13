@@ -1,9 +1,10 @@
 # LotinKrillYangilotin
-** Muallif: [Dasturbek](https://github.com/ddasturbek) **
 
-** Versiya: 1.0.0 **
-
+##Muallif: [Dasturbek](https://github.com/ddasturbek)
+##Versiya: 1.0.0
 Dasturdan o‘zbek tilidagi matnlarni yozuv shaklini almashtirishda va yangi lotin alifbosini joriy qilishda foydalanish mumkin!
+
+## Alifbo haqida
 
 Yangi lotin yozuvi haqida [taklif](https://regulation.gov.uz/oz/d/31596) O‘zbekiston Respublikasi Fanlar akademiyasi tomonidan 'NORMATIV-HUQUQIY HUJJATLAR LOYIHALARI MUHOKAMASI PORTALI'ga muhokamaga qo‘yilgan.
 
@@ -21,7 +22,7 @@ Harflarni o‘girishda foydalanilgan qoidalar manbalari:
 1. [O‘zbek lotin alifbosi qoidalari](https://uz.wikipedia.org/wiki/Vikipediya:O%CA%BBzbek_lotin_alifbosi_qoidalari)
 2. [Imlo va grammatika](https://uz.wikipedia.org/wiki/Vikipediya:Imlo_va_grammatika)
 
-** Ee harfi **
+##Ee harfi
 
 ![Ee_Ye_Ээ_Ее](https://github.com/ddasturbek/LotinKrillYangiLotin/assets/76460501/1c251c4d-12dd-4b7a-80d8-a1ad463e79d5)
 
@@ -32,4 +33,4 @@ Harflarni o‘girishda foydalanilgan qoidalar manbalari:
 
 ---
 
-** Dasturdan foydalanish. **
+##Dasturdan foydalanish.
