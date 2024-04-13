@@ -33,15 +33,15 @@ print(almashtir.Krillga('geometriya'))  # геометрия
 print(almashtir.YangiLotinga('shamol'))  # şamol
 ```
 
-Funksiyalar faqat so‘zlarni emas balki matnlarni ham shaklini almashtira oladi.
+Funksiyalar faqat so‘zlarni emas balki matnlar shaklini ham almashtira oladi.
 
 Birorta shaklga o‘tkazganda qolgan shakllarni o‘zi tanib oladi.
 
-Ya’ni YangiLotinga funksiyasiga Lotincha va Krillcha matnlarni kiritsa bo‘ladi.
+Ya’ni YangiLotinga funksiyasiga Lotincha yoki Krillcha matnlarni kiritsa bo‘ladi va aksincha.
 
 ```Python
-print(almashtir.YangiLotinga("Shu tizimni o‘rganish va ishlatish qobiliyatiga aytiladi"))  # Şu tizimni ōrganiş va işlatiş qobiliyatiga aytiladi
-print(almashtir.YangiLotinga("Шу тизимни ўрганиш ва ишлатиш қобилиятига айтилади"))  # Şu tizimni ōrganiş va işlatiş qobiliyatiga aytiladi
+print(almashtir.YangiLotinga("Shu tizimni o‘rganish va ishlatish qobiliyatiga aytiladi."))  # Şu tizimni ōrganiş va işlatiş qobiliyatiga aytiladi.
+print(almashtir.YangiLotinga("Шу тизимни ўрганиш ва ишлатиш қобилиятига айтилади."))  # Şu tizimni ōrganiş va işlatiş qobiliyatiga aytiladi.
 ```
 
 ## Alifbo haqida
