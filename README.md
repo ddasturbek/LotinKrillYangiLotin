@@ -1,7 +1,7 @@
 # LotinKrillYangilotin
-Muallif: [Dasturbek](https://github.com/ddasturbek)
+** Muallif: [Dasturbek](https://github.com/ddasturbek) **
 
-Versiya: 1.0.0
+** Versiya: 1.0.0 **
 
 Dasturdan o‘zbek tilidagi matnlarni yozuv shaklini almashtirishda va yangi lotin alifbosini joriy qilishda foydalanish mumkin!
 
@@ -20,3 +20,16 @@ Alifbo bilan to‘liq holda quyida tanishishingiz mumkin.
 Harflarni o‘girishda foydalanilgan qoidalar manbalari:
 1. [O‘zbek lotin alifbosi qoidalari](https://uz.wikipedia.org/wiki/Vikipediya:O%CA%BBzbek_lotin_alifbosi_qoidalari)
 2. [Imlo va grammatika](https://uz.wikipedia.org/wiki/Vikipediya:Imlo_va_grammatika)
+
+** Ee harfi **
+
+![Ee_Ye_Ээ_Ее](https://github.com/ddasturbek/LotinKrillYangiLotin/assets/76460501/1c251c4d-12dd-4b7a-80d8-a1ad463e79d5)
+
+* Lotincha Ee harfi Krillchaga Ээ yoki Ее shaklida almashtiriladi.
+* Lotincha Yeye harflar birikmasi esa Krillchaga faqat Ее shaklida almashtiriladi.
+* Krillcha Ээ harfi Lotinchaga faqat Ee shaklida almashtiriladi.
+* Krilcha Ее harfi Lotinchaga Ee yoki Yeye harf va harflar birikmasi shaklida almashtiriladi.
+
+---
+
+** Dasturdan foydalanish. **
