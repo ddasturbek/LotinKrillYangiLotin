@@ -69,7 +69,7 @@ Harflarni almashtirishda foydalanilgan qoidalar manbalari:
 
 **Krillcha Eе harfini lotinchaga o‘zgartirish qoidalari.**
 
-1) So‘zning boshida yoki unlidan keyin kelsa ye shaklida: егулик - yegulik, поезд - poyezd \n ъ tutuq belgisidan keyin kelsa ъ olib tashlanadi va ye shaklida: подъезд - podyezd
+1) So‘zning boshida yoki unlidan keyin kelsa ye shaklida: егулик - yegulik, поезд - poyezd; ъ tutuq belgisidan keyin kelsa ъ olib tashlanadi va ye shaklida: подъезд - podyezd
 
 2) Qolgan barcha holatlarda lotincha Ee shaklida o‘zgartiriladi.
 
@@ -77,7 +77,7 @@ Harflarni almashtirishda foydalanilgan qoidalar manbalari:
 **Lotinchada Ee harfini krillchaga o‘zgartirish qoidalari.**
 1) So‘zning boshida va unlidan keyin kelsa Ээ shaklida: elak-элак, aeraport-аэропорт
 
-2) Undosh harfidan keyin kelsa Ее shaklida: temir-темир, kel-кел, geometriya-геометрия \n Yy undoshidan keyin kelsa Yy tushirib qoldirilib Ее shaklida yoziladi: yengil-енгил
+2) Undosh harfidan keyin kelsa Ее shaklida: temir-темир, kel-кел, geometriya-геометрия; Yy undoshidan keyin kelsa Yy tushirib qoldirilib Ее shaklida yoziladi: yengil-енгил
 ---
 
 ## Dasturni testlash natijalari
@@ -94,4 +94,8 @@ Bu manbadagi matn Yangi lotin yozuvida mavjud emas, shuning uchun uni Notepad da
 
 ![Test natijalari](https://github.com/ddasturbek/LotinKrillYangiLotin/assets/76460501/0c3568b9-c3d7-4c91-a2ac-68bbe72d1b42)
 
-[1] **обектив=obyektiv** Krillcha **обектив** so‘zi Lotin va Yangi Lotinga almashtirilganda **obektiv** shaklida alamshib qoldi, bunga sabab qoidalar, aslida Lotin va Yangi lotinda **obyektiv** bo‘lishi kerak.
+[1] **обектив=obyektiv** Turli manbalarda turlicha yozilgan: ob’ekt [dastur bu holatda to‘g‘ri ishlaydi].
+
+Krillcha **обектив** so‘zi Lotin va Yangi Lotinga almashtirilganda **obektiv** shaklida alamshib qoldi, bunga sabab qoidalar, aslida Lotin va Yangi lotinda **obyektiv** bo‘lishi kerak.
+
+Boshqa almashtirishlarda bunday holat kuzatilmadi, chunki boshqa Krillcha harflarda Ee harfi qoidalarga mos ravishda almashadi, ya’ni uning oldida keladigan so‘zga bog‘liq. 
