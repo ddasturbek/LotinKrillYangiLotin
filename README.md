@@ -67,6 +67,17 @@ Harflarni almashtirishda foydalanilgan qoidalar manbalari:
 * Krillcha Ээ harfi Lotinchaga faqat Ee shaklida almashtiriladi.
 * Krilcha Ее harfi Lotinchaga Ee yoki Yeye harf va harflar birikmasi shaklida almashtiriladi.
 
+**Krillcha Eе harfini lotinchaga o‘zgartirish qoidalari.**
+
+1) So‘zning boshida yoki unlidan keyin kelsa ye shaklida: егулик - yegulik, поезд - poyezd \n ъ tutuq belgisidan keyin kelsa ъ olib tashlanadi va ye shaklida: подъезд - podyezd
+
+2) Qolgan barcha holatlarda lotincha Ee shaklida o‘zgartiriladi.
+
+
+**Lotinchada Ee harfini krillchaga o‘zgartirish qoidalari.**
+1) So‘zning boshida va unlidan keyin kelsa Ээ shaklida: elak-элак, aeraport-аэропорт
+
+2) Undosh harfidan keyin kelsa Ее shaklida: temir-темир, kel-кел, geometriya-геометрия \n Yy undoshidan keyin kelsa Yy tushirib qoldirilib Ее shaklida yoziladi: yengil-енгил
 ---
 
 ## Dasturni testlash natijalari
@@ -75,10 +86,12 @@ Dasturni testlab ko‘rish uchun wikipediadan quyidagi [matn](https://uz.wikiped
 
 | Yozuv shakli | 	Belgilar soni |	Matndagi birinchi gap.                                                                           |
 |--------------|----------------|--------------------------------------------------------------------------------------------------|
-| Lotin        |	8623          |	Til deb murakkab muloqot tizimiga yoki shu tizimni oʻrganish va ishlatish qobiliyatiga aytiladi. |
-| Krill	       |  8217          |	Тил деб мураккаб мулоқот тизимига ёки шу тизимни ўрганиш ва ишлатиш қобилиятига айтилади.        |
-| Yangi lotin	 |  8319        	| Til deb murakkab muloqot tizimiga yoki şu tizimni ōrganiş va işlatiş qobiliyatiga aytiladi.      |
-------------------------------------------------------------------------------------------------------------------------------------
+| [Lotin](https://github.com/ddasturbek/LotinKrillYangiLotin/blob/main/data/Til_Lotin.txt)        |	8623          |	Til deb murakkab muloqot tizimiga yoki shu tizimni oʻrganish va ishlatish qobiliyatiga aytiladi. |
+| [Krill](https://github.com/ddasturbek/LotinKrillYangiLotin/blob/main/data/Til_Krill.txt)	       |  8217          |	Тил деб мураккаб мулоқот тизимига ёки шу тизимни ўрганиш ва ишлатиш қобилиятига айтилади.        |
+| [Yangi lotin](https://github.com/ddasturbek/LotinKrillYangiLotin/blob/main/data/Til_YangiLotin.txt)	 |  8319        	| Til deb murakkab muloqot tizimiga yoki şu tizimni ōrganiş va işlatiş qobiliyatiga aytiladi.      |
 
 Bu manbadagi matn Yangi lotin yozuvida mavjud emas, shuning uchun uni Notepad dasturi orqali quyidagi harflari **O‘o‘G‘g‘ShshChch -> ŌōḠḡŞşÇç** ga almashtirildi va ushbu matn ham boshqa shakllar kabi fayl qilib testlash uchun saqlab olindi.
 
+![Test natijalari](https://github.com/ddasturbek/LotinKrillYangiLotin/assets/76460501/0c3568b9-c3d7-4c91-a2ac-68bbe72d1b42)
+
+[1] **обектив=obyektiv** Krillcha **обектив** so‘zi Lotin va Yangi Lotinga almashtirilganda **obektiv** shaklida alamshib qoldi, bunga sabab qoidalar, aslida Lotin va Yangi lotinda **obyektiv** bo‘lishi kerak.
