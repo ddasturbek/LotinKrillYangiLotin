@@ -73,10 +73,12 @@ Harflarni almashtirishda foydalanilgan qoidalar manbalari:
 
 Dasturni testlab ko‘rish uchun wikipediadan quyidagi [matn](https://uz.wikipedia.org/w/index.php?title=Til) olindi (lotin va krillcha holatlardada).
 
------------------------------------------------------------------------------------------------------------------------------------|
 | Yozuv shakli | 	Belgilar soni |	Matndagi birinchi gap.                                                                           |
 |--------------|----------------|--------------------------------------------------------------------------------------------------|
 | Lotin        |	8623          |	Til deb murakkab muloqot tizimiga yoki shu tizimni oʻrganish va ishlatish qobiliyatiga aytiladi. |
 | Krill	       |  8217          |	Тил деб мураккаб мулоқот тизимига ёки шу тизимни ўрганиш ва ишлатиш қобилиятига айтилади.        |
 | Yangi lotin	 |  8319        	| Til deb murakkab muloqot tizimiga yoki şu tizimni ōrganiş va işlatiş qobiliyatiga aytiladi.      |
 ------------------------------------------------------------------------------------------------------------------------------------
+
+Bu manbadagi matn Yangi lotin yozuvida mavjud emas, shuning uchun uni Notepad dasturi orqali quyidagi harflari **O‘o‘G‘g‘ShshChch -> ŌōḠḡŞşÇç** ga almashtirildi va ushbu matn ham boshqa shakllar kabi fayl qilib testlash uchun saqlab olindi.
+
