@@ -1,0 +1,1 @@
+from LotinKrillYangiLotin.LotinKrillYangiLotin import Almashtirish
