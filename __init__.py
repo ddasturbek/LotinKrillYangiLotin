@@ -7,4 +7,4 @@
 
 """
 
-from LotinKrillYangilotin import Almashtirish
+from .LotinKrillYangilotin import Almashtirish
