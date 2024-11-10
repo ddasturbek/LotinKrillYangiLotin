@@ -82,7 +82,7 @@ Harflarni almashtirishda foydalanilgan qoidalar manbalari:
 
 ## Dasturni testlash natijalari
 
-Dasturni testlab ko‘rish uchun wikipediadan quyidagi [matn](https://uz.wikipedia.org/w/index.php?title=Til) olindi (lotin va krillcha holatlardada).
+Dasturni testlab ko‘rish uchun wikipediadan quyidagi [matn](https://uz.wikipedia.org/w/index.php?title=Til) olindi (lotin va krillcha holatlarda).
 
 | Yozuv shakli | 	Belgilar soni |	Matndagi birinchi gap.                                                                           |
 |--------------|----------------|--------------------------------------------------------------------------------------------------|
@@ -99,3 +99,7 @@ Bu manbadagi matn Yangi lotin yozuvida mavjud emas, shuning uchun uni Notepad da
 Krillcha **обектив** so‘zi Lotin va Yangi Lotinga almashtirilganda **obektiv** shaklida alamshib qoldi, bunga sabab qoidalar, aslida Lotin va Yangi lotinda **obyektiv** bo‘lishi kerak.
 
 Boshqa almashtirishlarda bunday holat kuzatilmadi, chunki boshqa Krillcha harflarda Ee harfi qoidalarga mos ravishda almashadi, ya’ni uning oldida keladigan so‘zga bog‘liq. 
+
+## Patent
+
+![Guvohnoma](https://github.com/user-attachments/assets/503150f3-43b1-4693-986b-6333446b9299)
