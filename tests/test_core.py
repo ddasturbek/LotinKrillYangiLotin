@@ -156,6 +156,10 @@ def test_manba_majburan_korsatish():
         ("боғ", "bog‘"),
         ("маъно", "ma’no"),
         ("пенсия", "pensiya"),
+        ("цирк", "sirk"),
+        ("Васильев", "Vasilyev"),
+        ("пьеса", "pyesa"),
+        ("коррупция", "korrupsiya"),
     ],
 )
 def test_krill_lotin_ikki_tomonlama(krill, lotin):
@@ -167,7 +171,6 @@ def test_krill_lotin_ikki_tomonlama(krill, lotin):
     "krill, lotin",
     [
         ("Васильев", "Vasilyev"),
-        ("цирк", "sirk"),  # teskarisi (sirk → цирк) lug‘at orqali, 3-bosqich
         ("съёмка", "syomka"),
         ("ЎЗБЕКИСТОН ЧОЙ Чой", "O‘ZBEKISTON CHOY Choy"),
         ("Ш", "Sh"),
@@ -220,38 +223,25 @@ def test_detect_script(matn, yozuv):
 
 # --- Korpus ("Til" maqolasi) -------------------------------------------------
 
-def _sozlar(matn):
-    return matn.split()
-
-
 @pytest.fixture(scope="module")
 def korpus():
     return {
         k: (DATA / f"Til_{k}.txt").read_text(encoding="utf-8")
-        for k in ("Krill", "Lotin")
+        for k in ("Krill", "Lotin", "YangiLotin")
     }
 
 
-def test_korpus_krilldan_lotinga(korpus):
-    natija = _sozlar(to_latin(korpus["Krill"]))
-    kutilgan = _sozlar(korpus["Lotin"])
-    farq = [(a, b) for a, b in zip(natija, kutilgan) if a != b]
-    # Yagona farq: manba krill matndagi imlo xatosi "обектив" (3-bosqich lug‘ati)
-    assert len(natija) == len(kutilgan)
-    assert farq == [("obektiv", "obyektiv")]
-
-
-def test_korpus_lotindan_krillga(korpus):
-    natija = _sozlar(to_cyrillic(korpus["Lotin"]))
-    kutilgan = _sozlar(korpus["Krill"])
-    farq = [(a, b) for a, b in zip(natija, kutilgan) if a != b]
-    assert farq == [("объектив", "обектив")]  # bizniki to‘g‘ri, manbada xato
-
-
-def test_korpus_aylanma(korpus):
-    lotin = korpus["Lotin"]
-    assert to_latin(to_new_latin(lotin)) == to_latin(lotin)
-    assert to_new_latin(to_cyrillic(to_new_latin(lotin))) == to_new_latin(lotin)
+@pytest.mark.parametrize(
+    "manba, maqsad",
+    [
+        ("Krill", "Lotin"), ("Krill", "YangiLotin"),
+        ("Lotin", "Krill"), ("Lotin", "YangiLotin"),
+        ("YangiLotin", "Krill"), ("YangiLotin", "Lotin"),
+    ],
+)
+def test_korpus_belgima_belgi(korpus, manba, maqsad):
+    f = {"Krill": to_cyrillic, "Lotin": to_latin, "YangiLotin": to_new_latin}[maqsad]
+    assert f(korpus[manba]) == korpus[maqsad]
 
 
 # --- Chidamlilik ---------------------------------------------------------------

@@ -19,6 +19,8 @@ from __future__ import annotations
 import re
 import unicodedata
 
+from .lugat import KRILL_LOTIN, LOTIN_KRILL
+
 __all__ = [
     "to_latin",
     "to_cyrillic",
@@ -157,7 +159,10 @@ def _tahlil(soz: str, yangi_lotin: bool) -> tuple[list[list[_Fon]], bool]:
                 else:
                     guruhlar.append([_Fon(TUTUQ, hk, c)])
             elif lc == "ь":
-                guruhlar.append([_Fon("", katta, c)])  # мебель → mebel
+                if nxt.lower() == "о":
+                    guruhlar.append([_Fon("y", katta and hk, c)])  # бульон → bulyon
+                else:
+                    guruhlar.append([_Fon("", katta, c)])  # мебель → mebel
             elif lc in _KR_ODDIY:
                 guruhlar.append([_Fon(_KR_ODDIY[lc], katta, c)])
             else:
@@ -220,10 +225,9 @@ def _ts_ts(fon, j) -> bool:
     return any(keyin.startswith(q) for q in _TS_QOLIPLAR)
 
 
-def _krillga_yoz(guruhlar, hk) -> str:
+def _krillga_yoz(guruhlar, hk, oldingi: str = "") -> str:
     fon = [f for g in guruhlar for f in g]
     natija = []
-    oldingi = ""  # oxirgi yozilgan fonema (lotincha)
     j = 0
     n = len(fon)
     while j < n:
@@ -244,9 +248,11 @@ def _krillga_yoz(guruhlar, hk) -> str:
         k = keyingi.ph if keyingi else ""
 
         if ph == "y" and k == "e":
-            # undoshdan keyin: obyekt → объект, podyezd → подъезд
+            # undoshdan keyin: obyekt → объект, podyezd → подъезд (old qo‘shimcha
+            # undoshlari b, d, s, z), qolganlarida ь: Vasilyev → Васильев, pyesa → пьеса
             if oldingi and oldingi not in _LAT_UNLILAR and oldingi != TUTUQ:
-                natija.append("ЪЕ" if hk else "ъе")
+                belgi = "ъ" if oldingi in ("b", "d", "s", "z") else "ь"
+                natija.append(_registr(belgi + "е", hk, hk))
             else:
                 natija.append(_registr("е", f.katta, hk))
             oldingi = "e"
@@ -262,8 +268,8 @@ def _krillga_yoz(guruhlar, hk) -> str:
             oldingi = "s"
             j += 2
             continue
-        if ph == "s" and oldingi == "k" and "".join(x.ph for x in fon[j + 1: j + 4]) == "iya":
-            natija.append(_registr("ц", f.katta, hk))  # funksiya → функция
+        if ph == "s" and oldingi in ("k", "p") and "".join(x.ph for x in fon[j + 1: j + 4]) == "iya":
+            natija.append(_registr("ц", f.katta, hk))  # funksiya → функция, korrupsiya → коррупция
             oldingi = "s"
             j += 1
             continue
@@ -281,6 +287,54 @@ def _krillga_yoz(guruhlar, hk) -> str:
 
 
 # --- Matnni so‘zlarga bo‘lish -----------------------------------------------
+
+# --- Istisnolar lug‘ati -------------------------------------------------------
+
+# O‘zakdan keyin keladigan qo‘shimchalar zanjiri (yangi lotin fonemalarida).
+_QOSHIMCHA = re.compile(
+    r"(?:lar)?"
+    r"(?:im|ing|i|si|imiz|ingiz|miz|ngiz|m|ng)?"
+    r"(?:ni|ning|ga|ka|qa|da|ta|dan|tan|dagi|day|dek|ça|çi|lik|li|siz)?"
+    r"(?:mi|ku|u|yu|gina)?"
+)
+_LK_KALITLAR = sorted(LOTIN_KRILL, key=len, reverse=True)
+_KL_KALITLAR = sorted(KRILL_LOTIN, key=len, reverse=True)
+
+
+def _lugat_krillga(guruhlar, hk) -> str | None:
+    """Lotin so‘zi LOTIN_KRILL lug‘atidagi o‘zak bilan boshlansa, krillcha yozadi."""
+    fon = [f for g in guruhlar for f in g]
+    if not fon or any(f.kr is not None or f.xom is not None or len(f.ph) != 1 for f in fon):
+        return None
+    kalit = "".join(f.ph for f in fon).lower()
+    for ozak in _LK_KALITLAR:
+        if kalit.startswith(ozak) and _QOSHIMCHA.fullmatch(kalit[len(ozak):]):
+            kr = LOTIN_KRILL[ozak]
+            qolgan = fon[len(ozak):]
+            if qolgan and kr.endswith("ь"):
+                kr = kr[:-1]  # sentabrda → сентябрда
+            kr = _registr(kr, fon[0].katta, hk)
+            return kr + _krillga_yoz([qolgan], hk, oldingi=ozak[-1])
+    return None
+
+
+def _lugat_lotinga(guruhlar, hk):
+    """Krill so‘zidan chiqqan fonemalarni KRILL_LOTIN bo‘yicha to‘g‘rilaydi."""
+    fon = [f for g in guruhlar for f in g]
+    if not fon or not all(f.kr is not None and f.xom is None for f in fon):
+        return guruhlar
+    tekis = [f for f in fon if f.ph]
+    kalit = "".join(f.ph for f in tekis)
+    if any(len(f.ph) != 1 for f in tekis):
+        return guruhlar
+    for xato in _KL_KALITLAR:
+        if kalit.startswith(xato):
+            togri = KRILL_LOTIN[xato]
+            yangi = [_Fon(c, tekis[0].katta if k == 0 else hk and tekis[0].katta, "")
+                     for k, c in enumerate(togri)]
+            return [yangi + tekis[len(xato):]]
+    return guruhlar
+
 
 def _normallash(matn: str) -> str:
     return unicodedata.normalize("NFC", matn).translate(_NORMALLASH)
@@ -354,8 +408,9 @@ def _almashtir(matn: str, maqsad: str, manba: str | None) -> str:
             continue
         guruhlar, hk = _tahlil(bolak, yangi)
         if maqsad == "cyrillic":
-            natija.append(_krillga_yoz(guruhlar, hk))
+            natija.append(_lugat_krillga(guruhlar, hk) or _krillga_yoz(guruhlar, hk))
         else:
+            guruhlar = _lugat_lotinga(guruhlar, hk)
             natija.append(_lotinga_yoz(guruhlar, hk, yangi=(maqsad == "new_latin")))
     return "".join(natija)
 
