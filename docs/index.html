@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LotinKrillYangiLotin — o‘zbek matnini yangi alifboga o‘tkazish</title>
+<meta name="description" content="O‘zbek matnini Lotin, Krill va Yangi lotin (O‘RQ-1184, 2027) yozuvlari o‘rtasida brauzerda almashtirish.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --fon: #F2F5F7;
+    --sirt: #FFFFFF;
+    --siyoh: #18202E;
+    --xira: #5B6677;
+    --chiziq: #D5DCE4;
+    --kobalt: #1D3F78;
+    --firuza: #0F7F7A;
+    --oxra: #B9862A;
+    --oxra-fon: #F6ECD6;
+    --radius-katta: 14px;
+    --radius-kichik: 8px;
+    --shrift: "Onest", "Segoe UI", system-ui, -apple-system, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --fon: #121A27;
+      --sirt: #19243A;
+      --siyoh: #E7ECF3;
+      --xira: #9AA6B8;
+      --chiziq: #2C3A52;
+      --kobalt: #8DB2F0;
+      --firuza: #4CC2BA;
+      --oxra: #E0B35A;
+      --oxra-fon: #3A3020;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--fon);
+    color: var(--siyoh);
+    font: 400 1rem/1.55 var(--shrift);
+  }
+  a { color: var(--kobalt); text-underline-offset: 3px; }
+  :focus-visible { outline: 3px solid var(--firuza); outline-offset: 2px; border-radius: 4px; }
+  .sahifa { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+  /* Bosh qism */
+  .bosh {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 0; gap: 16px; flex-wrap: wrap;
+  }
+  .bosh__nom { font-weight: 700; letter-spacing: -0.01em; color: var(--siyoh); text-decoration: none; }
+  .bosh__havolalar { display: flex; gap: 20px; font-size: 0.95rem; }
+
+  /* Sarlavha: to‘rt harf */
+  .kirish { padding: 40px 0 36px; }
+  .kirish h1 {
+    font-size: clamp(1.75rem, 3.6vw, 2.6rem); line-height: 1.15; font-weight: 800;
+    letter-spacing: -0.02em; margin: 0 0 14px; max-width: 22ch;
+  }
+  .kirish p { margin: 0; max-width: 60ch; color: var(--xira); font-size: 1.08rem; }
+  .harflar {
+    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin: 36px 0 0; padding: 0; list-style: none;
+    border-top: 2px solid var(--siyoh);
+  }
+  .harflar li { padding: 18px 0 0; }
+  .harflar li + li { padding-left: 20px; border-left: 1px solid var(--chiziq); }
+  .harf__yangi {
+    display: block; font-size: clamp(3.4rem, 9vw, 7rem); line-height: 1; font-weight: 800;
+    color: var(--kobalt); letter-spacing: -0.03em;
+  }
+  .harf__eski { display: block; margin-top: 10px; color: var(--xira); font-size: 0.98rem; }
+  .harf__eski b { color: var(--siyoh); font-weight: 600; }
+
+  /* O‘girgich */
+  .ogirgich {
+    background: var(--sirt); border: 1px solid var(--chiziq); border-radius: var(--radius-katta);
+    padding: 20px; margin: 8px 0 56px;
+  }
+  .boshqaruv { display: flex; flex-wrap: wrap; gap: 14px 24px; align-items: center; margin-bottom: 16px; }
+  .tanlov { display: inline-flex; border: 1px solid var(--chiziq); border-radius: 999px; padding: 3px; }
+  .tanlov input { position: absolute; opacity: 0; pointer-events: none; }
+  .tanlov label {
+    padding: 7px 16px; border-radius: 999px; cursor: pointer; font-weight: 500; font-size: 0.95rem;
+    color: var(--xira);
+  }
+  .tanlov input:checked + label { background: var(--kobalt); color: var(--sirt); }
+  .tanlov input:focus-visible + label { outline: 3px solid var(--firuza); outline-offset: 1px; }
+  .boshqaruv__manba { display: flex; gap: 8px; align-items: center; font-size: 0.95rem; color: var(--xira); }
+  select {
+    font: inherit; color: var(--siyoh); background: var(--sirt);
+    border: 1px solid var(--chiziq); border-radius: var(--radius-kichik); padding: 6px 10px;
+  }
+  .oynalar { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .oyna { display: flex; flex-direction: column; min-width: 0; }
+  .oyna__sarlavha {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-size: 0.92rem; color: var(--xira); margin-bottom: 6px; min-height: 1.6em;
+  }
+  .oyna__sarlavha strong { color: var(--siyoh); font-weight: 600; }
+  textarea, .natija {
+    font: 400 1.08rem/1.6 var(--shrift); color: var(--siyoh);
+    border: 1px solid var(--chiziq); border-radius: var(--radius-kichik);
+    padding: 12px 14px; min-height: 220px; width: 100%;
+  }
+  textarea { resize: vertical; background: var(--fon); }
+  .natija { background: var(--fon); white-space: pre-wrap; overflow-wrap: anywhere; }
+  .natija:empty::before { content: attr(data-bosh); color: var(--xira); }
+  .natija mark { background: var(--oxra-fon); color: inherit; border-bottom: 2px solid var(--oxra); border-radius: 2px; }
+  .oyna__pastki { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 10px; min-height: 36px; }
+  .oyna__pastki span { color: var(--xira); font-size: 0.92rem; margin-right: 2px; }
+  button {
+    font: inherit; cursor: pointer; color: var(--siyoh); background: var(--sirt);
+    border: 1px solid var(--chiziq); border-radius: var(--radius-kichik); padding: 5px 12px;
+  }
+  button:hover { border-color: var(--kobalt); }
+  .tugma-harf { min-width: 40px; font-weight: 700; font-size: 1.05rem; }
+  .holat { font-size: 0.92rem; color: var(--xira); margin: 14px 0 0; }
+  .holat[data-tur="xato"] { color: #B3261E; }
+  @media (prefers-color-scheme: dark) { .holat[data-tur="xato"] { color: #FF8A80; } }
+
+  /* Murakkab holatlar */
+  .misollar h2 { font-size: 1.5rem; letter-spacing: -0.01em; margin: 0 0 6px; }
+  .misollar > p { margin: 0 0 18px; color: var(--xira); max-width: 62ch; }
+  .misollar ul { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--chiziq); }
+  .misol {
+    display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr) minmax(0, 1.4fr);
+    gap: 4px 20px; width: 100%; text-align: left; align-items: baseline;
+    border: 0; border-bottom: 1px solid var(--chiziq); border-radius: 0; background: none;
+    padding: 12px 6px;
+  }
+  .misol:hover { background: var(--sirt); }
+  .misol__kirish { font-weight: 600; }
+  .misol__natija { color: var(--kobalt); font-weight: 600; }
+  .misol__natija small { color: var(--xira); font-weight: 400; margin-right: 6px; }
+  .misol__izoh { color: var(--xira); font-size: 0.95rem; }
+
+  .oxiri {
+    margin-top: 56px; padding: 28px 0 40px; border-top: 1px solid var(--chiziq);
+    color: var(--xira); font-size: 0.93rem;
+  }
+  .oxiri p { margin: 0 0 8px; max-width: 70ch; }
+
+  @media (max-width: 760px) {
+    .sahifa { padding: 0 16px; }
+    .kirish { padding: 20px 0 24px; }
+    .harflar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .harflar li:nth-child(3) { padding-left: 0; border-left: 0; }
+    .oynalar { grid-template-columns: 1fr; }
+    textarea, .natija { min-height: 150px; }
+    .ogirgich { padding: 14px; }
+    .misol { grid-template-columns: 1fr; }
+    .tugma-harf { min-width: 34px; padding: 5px 8px; }
+    .oyna__pastki { gap: 6px; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .natija { transition: opacity .15s; }
+  }
+  .natija[aria-busy="true"] { opacity: .55; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+</style>
+</head>
+<body>
+<div class="sahifa">
+  <header class="bosh">
+    <a class="bosh__nom" href="./">LotinKrillYangiLotin</a>
+    <nav class="bosh__havolalar" aria-label="Havolalar">
+      <a href="https://github.com/ddasturbek/LotinKrillYangiLotin">GitHub</a>
+      <a href="https://pypi.org/project/LotinKrillYangiLotin/">PyPI</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="kirish" aria-labelledby="sarlavha">
+      <h1 id="sarlavha">O‘zbek matnini yangi alifboga o‘tkazing</h1>
+      <p>2027-yil 22-apreldan <a href="https://www.lex.uz/uz/docs/8548754">O‘RQ-1184-son Qonun</a> bo‘yicha alifboda to‘rt harf o‘zgaradi. Matnni lotin, krill yoki yangi lotinda kiriting, natija darhol chiqadi.</p>
+      <ul class="harflar" aria-label="O‘zgargan harflar">
+        <li><span class="harf__yangi">Ö</span><span class="harf__eski">avval <b>O‘</b>, krillda <b>Ў</b></span></li>
+        <li><span class="harf__yangi">Ğ</span><span class="harf__eski">avval <b>G‘</b>, krillda <b>Ғ</b></span></li>
+        <li><span class="harf__yangi">Ş</span><span class="harf__eski">avval <b>Sh</b>, krillda <b>Ш</b></span></li>
+        <li><span class="harf__yangi">Ç</span><span class="harf__eski">avval <b>Ch</b>, krillda <b>Ч</b></span></li>
+      </ul>
+    </section>
+
+    <section class="ogirgich" id="ogirgich" aria-label="Matnni o‘girish">
+      <div class="boshqaruv">
+        <div class="tanlov" role="radiogroup" aria-label="Qaysi yozuvga o‘girish">
+          <input type="radio" name="maqsad" id="m-yangi" value="yangi" checked><label for="m-yangi">Yangi lotin</label>
+          <input type="radio" name="maqsad" id="m-lotin" value="lotin"><label for="m-lotin">Lotin</label>
+          <input type="radio" name="maqsad" id="m-krill" value="krill"><label for="m-krill">Krill</label>
+        </div>
+        <label class="boshqaruv__manba" for="manba">Lotin matn
+          <select id="manba">
+            <option value="">avtomatik aniqlansin</option>
+            <option value="latin">amaldagi lotinda</option>
+            <option value="new_latin">yangi lotinda</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="oynalar">
+        <div class="oyna">
+          <div class="oyna__sarlavha">
+            <label for="kirish"><strong>Matn</strong></label>
+            <span id="aniqlangan" aria-live="polite"></span>
+          </div>
+          <textarea id="kirish" spellcheck="false">Шу тизимни ўрганиш ва ишлатиш қобилиятига айтилади.</textarea>
+          <div class="oyna__pastki">
+            <span id="harf-izoh">Harf qo‘shish:</span>
+            <button type="button" class="tugma-harf" data-harf="ö" aria-describedby="harf-izoh">ö</button>
+            <button type="button" class="tugma-harf" data-harf="ğ" aria-describedby="harf-izoh">ğ</button>
+            <button type="button" class="tugma-harf" data-harf="ş" aria-describedby="harf-izoh">ş</button>
+            <button type="button" class="tugma-harf" data-harf="ç" aria-describedby="harf-izoh">ç</button>
+            <button type="button" class="tugma-harf" data-harf="’" aria-describedby="harf-izoh" title="Tutuq belgisi">’</button>
+          </div>
+        </div>
+        <div class="oyna">
+          <div class="oyna__sarlavha">
+            <strong id="natija-nomi">Natija</strong>
+            <span id="nusxa-holat" aria-live="polite"></span>
+          </div>
+          <div class="natija" id="natija" role="region" aria-labelledby="natija-nomi" aria-live="polite" aria-busy="true" data-bosh="Natija shu yerda chiqadi"></div>
+          <div class="oyna__pastki">
+            <button type="button" id="nusxa">Nusxa olish</button>
+          </div>
+        </div>
+      </div>
+      <p class="holat" id="holat" role="status">Python muhiti yuklanmoqda. Birinchi ochilishda bu 10–20 soniya oladi.</p>
+    </section>
+
+    <section class="misollar" aria-labelledby="misollar-sarlavha">
+      <h2 id="misollar-sarlavha">Murakkab holatlar</h2>
+      <p>Har bir harfni alohida almashtirish bilan xato chiqadigan joylar. Misolni bossangiz, u yuqoridagi oynaga tushadi.</p>
+      <ul id="misollar-royxat"></ul>
+    </section>
+  </main>
+
+  <footer class="oxiri">
+    <p>Sahifa brauzeringizda <a href="https://pyodide.org/">Pyodide</a> yordamida LotinKrillYangiLotin Python kutubxonasining o‘zini ishga tushiradi. Matningiz hech qayerga yuborilmaydi.</p>
+    <p>Kutubxona versiyasi: <span id="versiya">…</span>. Muallif: <a href="https://github.com/ddasturbek">Dasturbek</a>. Litsenziya: MIT.</p>
+  </footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/pyodide/v0.27.2/full/pyodide.js"></script>
+<script>
+(() => {
+  "use strict";
+  const PYODIDE_URL = "https://cdn.jsdelivr.net/pyodide/v0.27.2/full/";
+  const YOZUV_NOMI = {
+    cyrillic: "krill", latin: "amaldagi lotin", new_latin: "yangi lotin",
+    mixed: "aralash", unknown: "",
+  };
+  const FUNKSIYA = { yangi: "to_new_latin", lotin: "to_latin", krill: "to_cyrillic" };
+  const MAQSAD_NOMI = { yangi: "Yangi lotin", lotin: "Lotin", krill: "Krill" };
+  const YANGI_HARFLAR = /[ÖöĞğŞşÇç]/g;
+
+  const $ = (id) => document.getElementById(id);
+  const kirish = $("kirish"), natija = $("natija"), holat = $("holat"), manba = $("manba");
+  let lky = null;
+  let kechiktirish = 0;
+
+  const maqsad = () => document.querySelector('input[name="maqsad"]:checked').value;
+
+  function holatYoz(matn, tur) {
+    holat.textContent = matn;
+    if (tur) holat.dataset.tur = tur; else delete holat.dataset.tur;
+    holat.hidden = !matn;
+  }
+
+  function ajrat(matn, m) {
+    const x = matn.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    return m === "yangi" ? x.replace(YANGI_HARFLAR, "<mark>$&</mark>") : x;
+  }
+
+  function ogir() {
+    if (!lky) return;
+    const m = maqsad();
+    const matn = kirish.value;
+    const f = lky[FUNKSIYA[m]];
+    const natijaMatn = manba.value ? f.callKwargs(matn, { source: manba.value }) : f(matn);
+    natija.innerHTML = ajrat(natijaMatn, m);
+    natija.dataset.matn = natijaMatn;
+    $("natija-nomi").textContent = MAQSAD_NOMI[m];
+    const yozuv = YOZUV_NOMI[lky.detect_script(matn)];
+    $("aniqlangan").textContent = yozuv ? "Aniqlangan yozuv: " + yozuv : "";
+  }
+
+  function rejala() {
+    clearTimeout(kechiktirish);
+    kechiktirish = setTimeout(ogir, 120);
+  }
+
+  kirish.addEventListener("input", rejala);
+  manba.addEventListener("change", ogir);
+  document.querySelectorAll('input[name="maqsad"]').forEach((r) => r.addEventListener("change", ogir));
+
+  document.querySelectorAll(".tugma-harf").forEach((b) => {
+    b.addEventListener("click", () => {
+      const { selectionStart: s, selectionEnd: e, value } = kirish;
+      kirish.value = value.slice(0, s) + b.dataset.harf + value.slice(e);
+      kirish.focus();
+      kirish.setSelectionRange(s + 1, s + 1);
+      ogir();
+    });
+  });
+
+  $("nusxa").addEventListener("click", async () => {
+    const h = $("nusxa-holat");
+    try {
+      await navigator.clipboard.writeText(natija.dataset.matn || "");
+      h.textContent = "Nusxa olindi";
+    } catch {
+      h.textContent = "Nusxa olinmadi: matnni belgilab, Ctrl+C bosing";
+    }
+    setTimeout(() => { h.textContent = ""; }, 2500);
+  });
+
+  async function misollarniYukla() {
+    try {
+      const r = await fetch("examples.json");
+      const d = await r.json();
+      $("versiya").textContent = d.versiya;
+      const royxat = $("misollar-royxat");
+      for (const x of d.misollar) {
+        const li = document.createElement("li");
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "misol";
+        b.innerHTML =
+          '<span class="misol__kirish"></span>' +
+          '<span class="misol__natija"><small></small><span></span></span>' +
+          '<span class="misol__izoh"></span>';
+        b.querySelector(".misol__kirish").textContent = x.kirish;
+        b.querySelector(".misol__natija small").textContent = MAQSAD_NOMI[x.maqsad] + ":";
+        b.querySelector(".misol__natija span").textContent = x.natija;
+        b.querySelector(".misol__izoh").textContent = x.izoh;
+        b.addEventListener("click", () => {
+          kirish.value = x.kirish;
+          manba.value = "";
+          $("m-" + x.maqsad).checked = true;
+          ogir();
+          $("ogirgich").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+          kirish.focus({ preventScroll: true });
+        });
+        li.appendChild(b);
+        royxat.appendChild(li);
+      }
+    } catch {
+      $("versiya").textContent = "noma’lum";
+    }
+  }
+
+  async function pythonniYukla() {
+    const pyodide = await loadPyodide({ indexURL: PYODIDE_URL });
+    const fayllar = await (await fetch("py/files.json")).json();
+    pyodide.FS.mkdirTree("/lky/LotinKrillYangiLotin");
+    await Promise.all(fayllar.map(async (nom) => {
+      const matn = await (await fetch("py/LotinKrillYangiLotin/" + nom)).text();
+      pyodide.FS.writeFile("/lky/LotinKrillYangiLotin/" + nom, matn);
+    }));
+    pyodide.runPython("import sys; sys.path.insert(0, '/lky')");
+    return pyodide.pyimport("LotinKrillYangiLotin");
+  }
+
+  misollarniYukla();
+  pythonniYukla()
+    .then((modul) => {
+      lky = modul;
+      natija.setAttribute("aria-busy", "false");
+      holatYoz("");
+      ogir();
+    })
+    .catch((e) => {
+      console.error(e);
+      holatYoz("Python muhitini yuklab bo‘lmadi. Internet aloqasini tekshirib, sahifani yangilang.", "xato");
+    });
+})();
+</script>
+</body>
+</html>

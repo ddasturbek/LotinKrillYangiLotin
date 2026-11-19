@@ -16,6 +16,7 @@ Yangi o‘zbek lotin alifbosiga ([O‘RQ-1184-son Qonun](https://www.lex.uz/uz/d
 - Yangi API: `to_latin()`, `to_cyrillic()`, `to_new_latin()`, `detect_script()`, `TUTUQ`, `OKINA`.
 - `source=` parametri — lotin matn variantini majburan ko‘rsatish.
 - `lky` terminal buyrug‘i va `python -m LotinKrillYangiLotin`.
+- Veb-demo (GitHub Pages + Pyodide): kutubxonaning o‘zi brauzerda ishlaydi.
 - Istisnolar lug‘ati (`lugat.py`): `ь`, `ц`, `э` bilan yoziladigan o‘zlashmalar, oylar; o‘zbekcha qo‘shimchalar bilan ham ishlaydi.
 - Kirishni normallashtirish: Unicode NFC, `Ș` → `Ş`, `ǧ` → `ğ`, `ı`/`İ` → `i`/`I`, barcha apostrof variantlari.
 - URL, email va rim raqamlari o‘zgartirilmaydi.

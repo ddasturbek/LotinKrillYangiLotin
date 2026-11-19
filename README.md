@@ -9,6 +9,8 @@ O‘zbek tilidagi matnlarni **Lotin**, **Krill** va **Yangi lotin** yozuvlari o�
 
 **Muallif:** [Dasturbek](https://github.com/ddasturbek)
 
+**Veb-demo:** [ddasturbek.github.io/LotinKrillYangiLotin](https://ddasturbek.github.io/LotinKrillYangiLotin/) — o‘rnatmasdan brauzerda sinab ko‘ring.
+
 ## Yangi alifbo haqida
 
 2026-yil 21-oktabrda imzolangan [O‘RQ-1184-son Qonun](https://www.lex.uz/uz/docs/8548754) bilan lotin yozuviga asoslangan o‘zbek alifbosi takomillashtirildi. Qonun **2027-yil 22-apreldan** kuchga kiradi. Alifbo 26 harf va 3 harf birikmasi o‘rniga **28 harf va bitta tutuq belgisidan** iborat bo‘ladi:
@@ -172,6 +174,14 @@ cd LotinKrillYangiLotin
 pip install -e ".[dev]"
 pytest
 ```
+
+Veb-demoni lokal ko‘rish:
+
+```bash
+python docs/build.py && python -m http.server -d _site
+```
+
+Demo (`docs/index.html`) brauzerda [Pyodide](https://pyodide.org/) orqali `src/` dagi kutubxonaning aynan o‘zini ishga tushiradi, misollar esa README’dagi “Murakkab holatlar” jadvalidan olinadi. `main` ga har bir push’dan keyin GitHub Pages’ga avtomatik joylanadi.
 
 `data/` papkasida Vikipediyadagi “Til” maqolasi uch yozuvda saqlangan. Testlar ular o‘rtasidagi barcha 6 yo‘nalishda natija belgima-belgi mos kelishini tekshiradi.
 
