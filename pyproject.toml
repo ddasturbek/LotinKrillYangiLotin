@@ -22,7 +22,6 @@ classifiers = [
     "Programming Language :: Python :: 3.14",
     "Development Status :: 5 - Production/Stable",
     "Operating System :: OS Independent",
-    "Natural Language :: Uzbek",
     "Topic :: Text Processing :: Linguistic",
     "Intended Audience :: Developers",
 ]
