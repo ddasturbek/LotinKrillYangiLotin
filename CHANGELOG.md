@@ -2,7 +2,7 @@
 
 Format [Keep a Changelog](https://keepachangelog.com/) ga, versiyalash [SemVer](https://semver.org/) ga asoslangan.
 
-## [2.0.0] — chiqarilmagan
+## [2.0.0] — 2026-11-19
 
 Yangi o‘zbek lotin alifbosiga ([O‘RQ-1184-son Qonun](https://www.lex.uz/uz/docs/8548754), 2027-yil 22-apreldan kuchga kiradi) to‘liq moslashtirildi. Transliteratsiya yadrosi qaytadan yozildi.
 

@@ -12,7 +12,7 @@
 from .core import OKINA, TUTUQ, detect_script, to_cyrillic, to_latin, to_new_latin
 from .LotinKrillYangilotin import Almashtirish
 
-__version__ = "2.0.0.dev0"
+__version__ = "2.0.0"
 
 __all__ = [
     "to_latin",

@@ -3,7 +3,7 @@
 [![Testlar](https://github.com/ddasturbek/LotinKrillYangiLotin/actions/workflows/tests.yml/badge.svg)](https://github.com/ddasturbek/LotinKrillYangiLotin/actions/workflows/tests.yml)
 [![PyPI](https://img.shields.io/pypi/v/LotinKrillYangiLotin)](https://pypi.org/project/LotinKrillYangiLotin/)
 [![Python](https://img.shields.io/pypi/pyversions/LotinKrillYangiLotin)](https://pypi.org/project/LotinKrillYangiLotin/)
-[![Litsenziya: MIT](https://img.shields.io/badge/litsenziya-MIT-blue)](LICENSE)
+[![Litsenziya: MIT](https://img.shields.io/badge/litsenziya-MIT-blue)](https://github.com/ddasturbek/LotinKrillYangiLotin/blob/main/LICENSE)
 
 O‘zbek tilidagi matnlarni **Lotin**, **Krill** va **Yangi lotin** yozuvlari o‘rtasida almashtiruvchi Python kutubxonasi va terminal buyrug‘i.
 
@@ -148,7 +148,7 @@ Asosiy manba — [O‘zbek tilining asosiy imlo qoidalari](https://lex.uz/docs/1
 
 ### Istisnolar lug‘ati
 
-Qoida bilan tiklab bo‘lmaydigan so‘zlar ([`lugat.py`](src/LotinKrillYangiLotin/lugat.py)) — masalan `sirk` → `цирк`, `kompyuter` → `компьютер`, `сентябрь` → `sentabr`. Lug‘atdagi so‘zlar o‘zbekcha qo‘shimchalar bilan ham taniladi (`sirkda` → `циркда`), lekin tasodifiy o‘xshash so‘zlar o‘zgarmaydi (`sirka` → `сирка`).
+Qoida bilan tiklab bo‘lmaydigan so‘zlar ([`lugat.py`](https://github.com/ddasturbek/LotinKrillYangiLotin/blob/main/src/LotinKrillYangiLotin/lugat.py)) — masalan `sirk` → `цирк`, `kompyuter` → `компьютер`, `сентябрь` → `sentabr`. Lug‘atdagi so‘zlar o‘zbekcha qo‘shimchalar bilan ham taniladi (`sirkda` → `циркда`), lekin tasodifiy o‘xshash so‘zlar o‘zgarmaydi (`sirka` → `сирка`).
 
 Yangi so‘z qo‘shmoqchi bo‘lsangiz, `lugat.py` ga qator va `tests/test_lugat.py` ga misol qo‘shib, Pull Request yuboring.
 
@@ -164,7 +164,7 @@ Yangi so‘z qo‘shmoqchi bo‘lsangiz, `lugat.py` ga qator va `tests/test_luga
 | yangi lotin: `Ō ō Ḡ ḡ` | `Ö ö Ğ ğ` |
 | tutuq: `ʼ` (U+02BC) | `’` (U+2019) |
 
-`Almashtirish` klassi hamon ishlaydi, lekin `DeprecationWarning` beradi va 3.0.0 versiyada olib tashlanadi. Barcha o‘zgarishlar: [CHANGELOG.md](CHANGELOG.md).
+`Almashtirish` klassi hamon ishlaydi, lekin `DeprecationWarning` beradi va 3.0.0 versiyada olib tashlanadi. Barcha o‘zgarishlar: [CHANGELOG.md](https://github.com/ddasturbek/LotinKrillYangiLotin/blob/main/CHANGELOG.md).
 
 ## Ishlab chiqish
 
@@ -187,4 +187,4 @@ Demo (`docs/index.html`) brauzerda [Pyodide](https://pyodide.org/) orqali `src/`
 
 ## Litsenziya
 
-[MIT](LICENSE)
+[MIT](https://github.com/ddasturbek/LotinKrillYangiLotin/blob/main/LICENSE)
