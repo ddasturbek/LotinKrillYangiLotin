@@ -1,105 +1,190 @@
-## Dastur haqida
-**Muallif: [Dasturbek](https://github.com/ddasturbek)**
+# LotinKrillYangiLotin
 
-**Versiya: 1.0.0**
+[![Testlar](https://github.com/ddasturbek/LotinKrillYangiLotin/actions/workflows/tests.yml/badge.svg)](https://github.com/ddasturbek/LotinKrillYangiLotin/actions/workflows/tests.yml)
+[![PyPI](https://img.shields.io/pypi/v/LotinKrillYangiLotin)](https://pypi.org/project/LotinKrillYangiLotin/)
+[![Python](https://img.shields.io/pypi/pyversions/LotinKrillYangiLotin)](https://pypi.org/project/LotinKrillYangiLotin/)
+[![Litsenziya: MIT](https://img.shields.io/badge/litsenziya-MIT-blue)](https://github.com/ddasturbek/LotinKrillYangiLotin/blob/main/LICENSE)
 
-Dasturdan o‘zbek tilidagi matnlarni yozuv shaklini almashtirishda va yangi lotin alifbosini joriy qilishda foydalanish mumkin!
+O‘zbek tilidagi matnlarni **Lotin**, **Krill** va **Yangi lotin** yozuvlari o‘rtasida almashtiruvchi Python kutubxonasi va terminal buyrug‘i.
 
-## Dasturni o‘rnatish
+**Muallif:** [Dasturbek](https://github.com/ddasturbek)
 
-Siz dasturni Python loyihangizga [pip](https://pypi.org/project/LotinKrillYangiLotin) orqali o‘rnatib foydalanishingiz mumkin.
+**Veb-demo:** [ddasturbek.github.io/LotinKrillYangiLotin](https://ddasturbek.github.io/LotinKrillYangiLotin/) — o‘rnatmasdan brauzerda sinab ko‘ring.
+
+## Yangi alifbo haqida
+
+2026-yil 21-oktabrda imzolangan [O‘RQ-1184-son Qonun](https://www.lex.uz/uz/docs/8548754) bilan lotin yozuviga asoslangan o‘zbek alifbosi takomillashtirildi. Qonun **2027-yil 22-apreldan** kuchga kiradi. Alifbo 26 harf va 3 harf birikmasi o‘rniga **28 harf va bitta tutuq belgisidan** iborat bo‘ladi:
+
+| Krill | Amaldagi lotin (1995) | Yangi lotin (2027) | Misol |
+|:-:|:-:|:-:|---|
+| Ў ў | O‘ o‘ | **Ö ö** | ўқитувчи → o‘qituvchi → **ö**qituvçi |
+| Ғ ғ | G‘ g‘ | **Ğ ğ** | ғалаба → g‘alaba → **ğ**alaba |
+| Ш ш | Sh sh | **Ş ş** | шаҳар → shahar → **ş**ahar |
+| Ч ч | Ch ch | **Ç ç** | чой → choy → **ç**oy |
+| Ъ ъ | ’ | **’** | маъно → ma’no → ma’no |
+
+“Ng” birikmasi alohida harf sifatida alifbodan chiqarildi (yozilishi o‘zgarmaydi). Batafsil: [alfavit.uz](https://alfavit.uz/alphabet).
+
+Kutubxona chiqishida quyidagi belgilar ishlatiladi:
+
+| Belgi | Unicode | Qayerda |
+|:-:|:-:|---|
+| `Ö ö` `Ğ ğ` `Ş ş` `Ç ç` | U+00D6/F6, U+011E/1F, U+015E/5F, U+00C7/E7 | yangi lotin |
+| `’` | U+2019 | tutuq belgisi (ikkala lotin yozuvida) |
+| `‘` | U+2018 | amaldagi lotindagi `O‘ G‘` |
+
+Kirishda esa barcha keng tarqalgan variantlar qabul qilinadi: `o'`, `` o` ``, `oʻ`, `oʼ`, `o’`, rumincha `Ș`, turkcha klaviaturadagi `ı`/`İ` va boshqalar.
+
+## O‘rnatish
 
 ```bash
 pip install LotinKrillYangiLotin
 ```
 
-Yoki [githubdan](https://github.com/ddasturbek/LotinKrillYangiLotin) klonlab foydalanishingiz mumkin.
+Python 3.10 yoki undan yangi versiya kerak. Kutubxonaning boshqa bog‘liqliklari yo‘q.
+
+## Foydalanish
+
+```python
+from LotinKrillYangiLotin import to_latin, to_cyrillic, to_new_latin, detect_script
+
+to_new_latin("Шу тизимни ўрганиш ва ишлатиш қобилиятига айтилади.")
+# 'Şu tizimni örganiş va işlatiş qobiliyatiga aytiladi.'
+
+to_new_latin("O‘zbekiston choy")   # 'Özbekiston çoy'
+to_latin("Öğil şahar")            # 'O‘g‘il shahar'
+to_cyrillic("Öğil şahar")         # 'Ўғил шаҳар'
+to_cyrillic("geometriya")         # 'геометрия'
+to_latin("функция")               # 'funksiya'
+
+detect_script("Шаҳар")            # 'cyrillic'
+detect_script("shahar")           # 'latin'
+detect_script("şahar")            # 'new_latin'
+```
+
+Kirish matni istalgan yozuvda (hatto aralash) bo‘lishi mumkin: har bir funksiya manbani o‘zi aniqlaydi.
+
+| Funksiya | Natija |
+|---|---|
+| `to_latin(text)` | amaldagi lotin (1995) |
+| `to_cyrillic(text)` | krill |
+| `to_new_latin(text)` | yangi lotin (2027) |
+| `detect_script(text)` | `"cyrillic"`, `"latin"`, `"new_latin"`, `"mixed"` yoki `"unknown"` |
+
+### `source` parametri
+
+Matnda `Ö Ğ Ş Ç` harflaridan birortasi ham bo‘lmasa, uni yangi lotinda yozilgan deb aniqlab bo‘lmaydi. Shunda matn amaldagi lotin deb olinadi va `sh` → `ш` bo‘ladi. Yangi lotin ekanini aniq bilsangiz, `source` bilan ko‘rsating:
+
+```python
+to_cyrillic("Ishoq")                       # 'Ишоқ'  (sh = ш deb olindi)
+to_cyrillic("Ishoq", source="new_latin")   # 'Исҳоқ' (yangi lotinda sh = с+ҳ)
+```
+
+## Terminal buyrug‘i
+
+O‘rnatilgandan so‘ng `lky` buyrug‘i paydo bo‘ladi (yoki `python -m LotinKrillYangiLotin`):
+
+```bash
+lky -t yangi kitob.txt -o kitob_yangi.txt   # faylni yangi lotinga
+lky -t krill -m "O‘zbekiston"               # Ўзбекистон
+echo "Шаҳар" | lky -t yangi                 # Şahar
+lky --aniqlash kitob.txt                    # cyrillic
+lky -t krill -s yangi -m "Ishoq"            # Исҳоқ
+```
+
+| Parametr | Ma’nosi |
+|---|---|
+| `-t`, `--to` | maqsad yozuv: `lotin`, `krill`, `yangi` |
+| `-m`, `--matn` | faylsiz, to‘g‘ridan-to‘g‘ri matn |
+| `-o`, `--chiqish` | natijani faylga yozish |
+| `-s`, `--manba` | lotin matn variantini majburan ko‘rsatish: `lotin` yoki `yangi` |
+| `-a`, `--aniqlash` | faqat yozuvni aniqlash |
+
+## Murakkab holatlar
+
+Oddiy “harfni harfga almashtirish” bilan to‘g‘ri chiqmaydigan holatlar. Jadvaldagi har bir qator avtomatik testlar bilan tekshiriladi (`tests/test_readme.py`), ya’ni dastur aynan shu natijani beradi.
+
+<!-- murakkab-holatlar:boshi -->
+| Kirish | Yo‘nalish | Natija | Nima uchun murakkab |
+|---|---|---|---|
+| `ketsa aytsa` | Krill | `кетса айтса` | `ts` har doim `ц` emas: bu yerda т+с |
+| `Is’hoq` | Krill | `Исҳоқ` | `s’h` — ajratuvchi, tutuq (ъ) emas |
+| `Исҳоқ` | Lotin | `Is’hoq` | amaldagi lotinda `sh` = ш bo‘lgani uchun `s’h` |
+| `Is’hoq` | Yangi lotin | `Ishoq` | yangi lotinda `ş` bor, ajratish shart emas |
+| `U ‘salom’ dedi` | Krill | `У ‘салом’ деди` | qo‘shtirnoq tutuq belgisidan farqlanadi |
+| `(ertak)` | Krill | `(эртак)` | qavsdan keyin ham so‘z boshi: `э` |
+| `мебель` | Lotin | `mebel` | `ь` tushiriladi |
+| `mebel` | Krill | `мебель` | `ь` lug‘at orqali tiklanadi |
+| `ШАҲАР ва` | Lotin | `SHAHAR va` | registr har bir so‘z uchun alohida |
+| `ПОЕЗД` | Lotin | `POYEZD` | unlidan keyingi `е` → `ye` |
+| `obyektiv` | Krill | `объектив` | undoshdan keyingi `ye` → `ъе` |
+| `o‘zbek` | Yangi lotin | `özbek` | `o‘` → `ö` |
+| `Öğil` | Krill | `Ўғил` | yangi lotin harflari to‘g‘ridan-to‘g‘ri |
+| `mo‘’tabar` | Yangi lotin | `mö’tabar` | `o‘` va tutuq belgisi yonma-yon |
+| `funksiya, militsiya` | Krill | `функция, милиция` | `-ksiya` → `кция`, `-tsiya` → `ция` |
+| `15-sentabrda` | Krill | `15-сентябрда` | qo‘shimcha bilan `ь` tushadi |
+| `Сентябрь` | Yangi lotin | `Sentabr` | o‘zbek imlosi: `sentabr` |
+| `XX asr, https://kun.uz` | Krill | `XX аср, https://kun.uz` | rim raqamlari va URL o‘zgarmaydi |
+<!-- murakkab-holatlar:oxiri -->
+
+## Qoidalar
+
+Asosiy manba — [O‘zbek tilining asosiy imlo qoidalari](https://lex.uz/docs/1625271) (Vazirlar Mahkamasining 1995-yil 24-avgustdagi 339-son qarori).
+
+**Е / Э**
+- Krill `е` so‘z boshida, unlidan, `ъ` yoki `ь` dan keyin `ye` bo‘ladi (`егулик` → `yegulik`, `поезд` → `poyezd`, `подъезд` → `podyezd`, `Васильев` → `Vasilyev`), qolgan hollarda `e`.
+- Lotin `e` so‘z boshida va unlidan keyin `э` (`elak` → `элак`, `aeroport` → `аэропорт`), undoshdan keyin `е`.
+- Lotin `ye` → `е`; undoshdan keyin `b d s z` bo‘lsa `ъе` (`obyekt` → `объект`), boshqa undoshdan keyin `ье` (`pyesa` → `пьеса`).
+
+**Ц**
+- Krill `ц` unlidan keyin `ts`, qolgan hollarda `s` (`милиция` → `militsiya`, `функция` → `funksiya`, `цирк` → `sirk`).
+- Lotin `ts` faqat o‘zlashma qoliplarda `ц` (`-tsiya`, `-tsent`, `-tsept`, `litsey` ...), aks holda `тс` (`ketsa` → `кетса`). `-ksiya`, `-psiya` → `-кция`, `-пция`.
+
+**Ъ / Ь**
+- `ъ` → tutuq `’` (`маъно` → `ma’no`); `е ё ю я` oldidan tushiriladi.
+- `ь` tushiriladi (`мебель` → `mebel`); `ьо` → `yo` (`бульон` → `bulyon`).
+
+**Ё Ю Я** → `yo yu ya`, teskarisi ham.
+
+### Istisnolar lug‘ati
+
+Qoida bilan tiklab bo‘lmaydigan so‘zlar ([`lugat.py`](https://github.com/ddasturbek/LotinKrillYangiLotin/blob/main/src/LotinKrillYangiLotin/lugat.py)) — masalan `sirk` → `цирк`, `kompyuter` → `компьютер`, `сентябрь` → `sentabr`. Lug‘atdagi so‘zlar o‘zbekcha qo‘shimchalar bilan ham taniladi (`sirkda` → `циркда`), lekin tasodifiy o‘xshash so‘zlar o‘zgarmaydi (`sirka` → `сирка`).
+
+Yangi so‘z qo‘shmoqchi bo‘lsangiz, `lugat.py` ga qator va `tests/test_lugat.py` ga misol qo‘shib, Pull Request yuboring.
+
+## 1.x versiyadan o‘tish
+
+2.0.0 versiyada yangi lotin harflari qonunga moslashtirildi va API yangilandi.
+
+| 1.x | 2.x |
+|---|---|
+| `Almashtirish().Lotinga(t)` | `to_latin(t)` |
+| `Almashtirish().Krillga(t)` | `to_cyrillic(t)` |
+| `Almashtirish().YangiLotinga(t)` | `to_new_latin(t)` |
+| yangi lotin: `Ō ō Ḡ ḡ` | `Ö ö Ğ ğ` |
+| tutuq: `ʼ` (U+02BC) | `’` (U+2019) |
+
+`Almashtirish` klassi hamon ishlaydi, lekin `DeprecationWarning` beradi va 3.0.0 versiyada olib tashlanadi. Barcha o‘zgarishlar: [CHANGELOG.md](https://github.com/ddasturbek/LotinKrillYangiLotin/blob/main/CHANGELOG.md).
+
+## Ishlab chiqish
 
 ```bash
 git clone https://github.com/ddasturbek/LotinKrillYangiLotin.git
+cd LotinKrillYangiLotin
+pip install -e ".[dev]"
+pytest
 ```
 
-## Dasturdan foydalanish
+Veb-demoni lokal ko‘rish:
 
-```Python
-from LotinKrillYangiLotin import Almashtirish
-# Obyekt yaratish
-almashtir = Almashtirish()
-
-print(almashtir.Lotinga('функция'))  # funksiya
-print(almashtir.Krillga('geometriya'))  # геометрия
-print(almashtir.YangiLotinga('shamol'))  # şamol
+```bash
+python docs/build.py && python -m http.server -d _site
 ```
 
-Funksiyalar faqat so‘zlarni emas balki matnlar shaklini ham almashtira oladi.
+Demo (`docs/index.html`) brauzerda [Pyodide](https://pyodide.org/) orqali `src/` dagi kutubxonaning aynan o‘zini ishga tushiradi, misollar esa README’dagi “Murakkab holatlar” jadvalidan olinadi. `main` ga har bir push’dan keyin GitHub Pages’ga avtomatik joylanadi.
 
-Birorta shaklga o‘tkazganda qolgan shakllarni o‘zi tanib oladi.
+`data/` papkasida Vikipediyadagi “Til” maqolasi uch yozuvda saqlangan. Testlar ular o‘rtasidagi barcha 6 yo‘nalishda natija belgima-belgi mos kelishini tekshiradi.
 
-Ya’ni YangiLotinga funksiyasiga Lotincha yoki Krillcha matnlarni kiritsa bo‘ladi va aksincha.
+## Litsenziya
 
-```Python
-print(almashtir.YangiLotinga("Shu tizimni o‘rganish va ishlatish qobiliyatiga aytiladi."))  # Şu tizimni ōrganiş va işlatiş qobiliyatiga aytiladi.
-print(almashtir.YangiLotinga("Шу тизимни ўрганиш ва ишлатиш қобилиятига айтилади."))  # Şu tizimni ōrganiş va işlatiş qobiliyatiga aytiladi.
-```
-
-## Alifbo haqida
-
-Yangi lotin yozuvi haqida [taklif](https://regulation.gov.uz/oz/d/31596) O‘zbekiston Respublikasi Fanlar akademiyasi tomonidan 'NORMATIV-HUQUQIY HUJJATLAR LOYIHALARI MUHOKAMASI PORTALI'ga muhokamaga qo‘yilgan.
-
-* O‘zbek Lotin alifbosida 29 harf va bitta tutuq belgi (’) bor.
-* O‘zbek Krill alifbosida shunga mos, ya’ni 30 ta harf va belgi bor.
-* O‘zbek Yangi lotin alifbosida ham jami 30 ta harf va belgi bor.
-
-Alifbo bilan to‘liq holda quyida tanishishingiz mumkin.
-
-![LotinKrillYangiLotin](https://github.com/ddasturbek/LotinKrillYangiLotin/assets/76460501/a36715a4-2108-4179-b127-0409c5525708)
-
-Harflarni almashtirishda foydalanilgan qoidalar manbalari:
-1. [O‘zbek lotin alifbosi qoidalari](https://uz.wikipedia.org/wiki/Vikipediya:O%CA%BBzbek_lotin_alifbosi_qoidalari)
-2. [Imlo va grammatika](https://uz.wikipedia.org/wiki/Vikipediya:Imlo_va_grammatika)
-
-## Ee harfi
-
-![Ee_Ye_Ээ_Ее](https://github.com/ddasturbek/LotinKrillYangiLotin/assets/76460501/1c251c4d-12dd-4b7a-80d8-a1ad463e79d5)
-
-* Lotincha Ee harfi Krillchaga Ээ yoki Ее shaklida almashtiriladi.
-* Lotincha Yeye harflar birikmasi esa Krillchaga faqat Ее shaklida almashtiriladi.
-* Krillcha Ээ harfi Lotinchaga faqat Ee shaklida almashtiriladi.
-* Krilcha Ее harfi Lotinchaga Ee yoki Yeye harf va harflar birikmasi shaklida almashtiriladi.
-
-**Krillcha Eе harfini lotinchaga o‘zgartirish qoidalari.**
-
-1) So‘zning boshida yoki unlidan keyin kelsa ye shaklida: егулик - yegulik, поезд - poyezd; ъ tutuq belgisidan keyin kelsa ъ olib tashlanadi va ye shaklida: подъезд - podyezd
-
-2) Qolgan barcha holatlarda lotincha Ee shaklida o‘zgartiriladi.
-
-
-**Lotinchada Ee harfini krillchaga o‘zgartirish qoidalari.**
-1) So‘zning boshida va unlidan keyin kelsa Ээ shaklida: elak-элак, aeraport-аэропорт
-
-2) Undosh harfidan keyin kelsa Ее shaklida: temir-темир, kel-кел, geometriya-геометрия; Yy undoshidan keyin kelsa Yy tushirib qoldirilib Ее shaklida yoziladi: yengil-енгил
----
-
-## Dasturni testlash natijalari
-
-Dasturni testlab ko‘rish uchun wikipediadan quyidagi [matn](https://uz.wikipedia.org/w/index.php?title=Til) olindi (lotin va krillcha holatlarda).
-
-| Yozuv shakli | 	Belgilar soni |	Matndagi birinchi gap.                                                                           |
-|--------------|----------------|--------------------------------------------------------------------------------------------------|
-| [Lotin](https://github.com/ddasturbek/LotinKrillYangiLotin/blob/main/data/Til_Lotin.txt)        |	8623          |	Til deb murakkab muloqot tizimiga yoki shu tizimni oʻrganish va ishlatish qobiliyatiga aytiladi. |
-| [Krill](https://github.com/ddasturbek/LotinKrillYangiLotin/blob/main/data/Til_Krill.txt)	       |  8217          |	Тил деб мураккаб мулоқот тизимига ёки шу тизимни ўрганиш ва ишлатиш қобилиятига айтилади.        |
-| [Yangi lotin](https://github.com/ddasturbek/LotinKrillYangiLotin/blob/main/data/Til_YangiLotin.txt)	 |  8319        	| Til deb murakkab muloqot tizimiga yoki şu tizimni ōrganiş va işlatiş qobiliyatiga aytiladi.      |
-
-Bu manbadagi matn Yangi lotin yozuvida mavjud emas, shuning uchun uni Notepad dasturi orqali quyidagi harflari **O‘o‘G‘g‘ShshChch -> ŌōḠḡŞşÇç** ga almashtirildi va ushbu matn ham boshqa shakllar kabi fayl qilib testlash uchun saqlab olindi.
-
-![Test natijalari](https://github.com/ddasturbek/LotinKrillYangiLotin/assets/76460501/0c3568b9-c3d7-4c91-a2ac-68bbe72d1b42)
-
-[1] **обектив=obyektiv** Turli manbalarda turlicha yozilgan: ob’ekt [dastur bu holatda to‘g‘ri ishlaydi].
-
-Krillcha **обектив** so‘zi Lotin va Yangi Lotinga almashtirilganda **obektiv** shaklida alamshib qoldi, bunga sabab qoidalar, aslida Lotin va Yangi lotinda **obyektiv** bo‘lishi kerak.
-
-Boshqa almashtirishlarda bunday holat kuzatilmadi, chunki boshqa Krillcha harflarda Ee harfi qoidalarga mos ravishda almashadi, ya’ni uning oldida keladigan so‘zga bog‘liq. 
-
-## Patent
-
-![Guvohnoma](https://github.com/user-attachments/assets/503150f3-43b1-4693-986b-6333446b9299)
+[MIT](https://github.com/ddasturbek/LotinKrillYangiLotin/blob/main/LICENSE)

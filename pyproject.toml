@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "LotinKrillYangiLotin"
+version = "2.0.0"
+description = "O‘zbek tili uchun Lotin, Krill va Yangi lotin (2027) yozuvlari o‘rtasida transliteratsiya"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Dasturbek" }]
+requires-python = ">=3.10"
+keywords = ["uzbek", "o'zbek", "transliteration", "transliteratsiya", "cyrillic", "latin", "krill", "lotin", "alifbo"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Development Status :: 5 - Production/Stable",
+    "Operating System :: OS Independent",
+    "Natural Language :: Uzbek",
+    "Topic :: Text Processing :: Linguistic",
+    "Intended Audience :: Developers",
+]
+
+[project.urls]
+Homepage = "https://github.com/ddasturbek/LotinKrillYangiLotin"
+Issues = "https://github.com/ddasturbek/LotinKrillYangiLotin/issues"
+Changelog = "https://github.com/ddasturbek/LotinKrillYangiLotin/blob/main/CHANGELOG.md"
+Demo = "https://ddasturbek.github.io/LotinKrillYangiLotin/"
+
+[project.scripts]
+lky = "LotinKrillYangiLotin.cli:main"
+
+[project.optional-dependencies]
+dev = ["pytest>=7"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
