@@ -7,7 +7,7 @@
 <meta name="description" content="O‘zbek matnini Lotin, Krill va Yangi lotin (O‘RQ-1184, 2027) yozuvlari o‘rtasida brauzerda almashtirish.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
     --fon: #F2F5F7;
@@ -17,8 +17,9 @@
     --chiziq: #D5DCE4;
     --kobalt: #1D3F78;
     --firuza: #0F7F7A;
-    --oxra: #B9862A;
-    --oxra-fon: #F6ECD6;
+    --belgi-fon: #F4DFAE;
+    --belgi-chiziq: #A8761A;
+    --belgi-matn: inherit;
     --radius-katta: 14px;
     --radius-kichik: 8px;
     --shrift: "Onest", "Segoe UI", system-ui, -apple-system, sans-serif;
@@ -32,8 +33,9 @@
       --chiziq: #2C3A52;
       --kobalt: #8DB2F0;
       --firuza: #4CC2BA;
-      --oxra: #E0B35A;
-      --oxra-fon: #3A3020;
+      --belgi-fon: rgba(240, 190, 90, .28);
+      --belgi-chiziq: #F0BE5A;
+      --belgi-matn: #FFE2A6;
     }
   }
   * { box-sizing: border-box; }
@@ -46,77 +48,85 @@
   }
   a { color: var(--kobalt); text-underline-offset: 3px; }
   :focus-visible { outline: 3px solid var(--firuza); outline-offset: 2px; border-radius: 4px; }
-  .sahifa { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  .sahifa { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
 
   /* Bosh qism */
   .bosh {
     display: flex; justify-content: space-between; align-items: center;
-    padding: 20px 0; gap: 16px; flex-wrap: wrap;
+    padding: 14px 0; gap: 16px; flex-wrap: wrap;
   }
   .bosh__nom { font-weight: 700; letter-spacing: -0.01em; color: var(--siyoh); text-decoration: none; }
   .bosh__havolalar { display: flex; gap: 20px; font-size: 0.95rem; }
 
   /* Sarlavha: to‘rt harf */
-  .kirish { padding: 40px 0 36px; }
+  .kirish { padding: 12px 0 28px; }
   .kirish h1 {
-    font-size: clamp(1.75rem, 3.6vw, 2.6rem); line-height: 1.15; font-weight: 800;
-    letter-spacing: -0.02em; margin: 0 0 14px; max-width: 22ch;
+    font-size: clamp(1.6rem, 3.4vw, 2.5rem); line-height: 1.15; font-weight: 800;
+    letter-spacing: -0.02em; margin: 0 0 8px;
   }
-  .kirish p { margin: 0; max-width: 60ch; color: var(--xira); font-size: 1.08rem; }
+  .kirish p { margin: 0; color: var(--xira); font-size: 0.95rem; }
   .harflar {
     display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
-    margin: 36px 0 0; padding: 0; list-style: none;
+    margin: 28px 0 0; padding: 0; list-style: none;
     border-top: 2px solid var(--siyoh);
   }
-  .harflar li { padding: 18px 0 0; }
+  .harflar li { padding: 14px 0 0; }
   .harflar li + li { padding-left: 20px; border-left: 1px solid var(--chiziq); }
   .harf__yangi {
-    display: block; font-size: clamp(3.4rem, 9vw, 7rem); line-height: 1; font-weight: 800;
+    display: block; font-size: clamp(3.2rem, 8vw, 6.2rem); line-height: 1.22; font-weight: 800;
     color: var(--kobalt); letter-spacing: -0.03em;
   }
-  .harf__eski { display: block; margin-top: 10px; color: var(--xira); font-size: 0.98rem; }
+  .harf__eski { display: block; margin-top: 4px; color: var(--xira); font-size: 0.98rem; }
   .harf__eski b { color: var(--siyoh); font-weight: 600; }
 
   /* O‘girgich */
   .ogirgich {
     background: var(--sirt); border: 1px solid var(--chiziq); border-radius: var(--radius-katta);
-    padding: 20px; margin: 8px 0 56px;
+    padding: 22px; margin: 8px 0 56px;
   }
-  .boshqaruv { display: flex; flex-wrap: wrap; gap: 14px 24px; align-items: center; margin-bottom: 16px; }
+  .oynalar { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  .oyna { display: flex; flex-direction: column; min-width: 0; }
+  .oyna__sarlavha {
+    display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;
+    gap: 8px 12px; margin-bottom: 10px; min-height: 44px;
+  }
+  .oyna__nom { font-weight: 700; font-size: 1.05rem; }
+  .yozuv { display: flex; align-items: center; gap: 8px; font-size: 0.95rem; color: var(--xira); }
+
   .tanlov { display: inline-flex; border: 1px solid var(--chiziq); border-radius: 999px; padding: 3px; }
   .tanlov input { position: absolute; opacity: 0; pointer-events: none; }
   .tanlov label {
-    padding: 7px 16px; border-radius: 999px; cursor: pointer; font-weight: 500; font-size: 0.95rem;
+    padding: 6px 14px; border-radius: 999px; cursor: pointer; font-weight: 500; font-size: 0.95rem;
     color: var(--xira);
   }
   .tanlov input:checked + label { background: var(--kobalt); color: var(--sirt); }
   .tanlov input:focus-visible + label { outline: 3px solid var(--firuza); outline-offset: 1px; }
-  .boshqaruv__manba { display: flex; gap: 8px; align-items: center; font-size: 0.95rem; color: var(--xira); }
   select {
-    font: inherit; color: var(--siyoh); background: var(--sirt);
-    border: 1px solid var(--chiziq); border-radius: var(--radius-kichik); padding: 6px 10px;
+    font: inherit; font-weight: 500; color: var(--siyoh); background: var(--fon);
+    border: 1px solid var(--chiziq); border-radius: 999px; padding: 7px 14px;
   }
-  .oynalar { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .oyna { display: flex; flex-direction: column; min-width: 0; }
-  .oyna__sarlavha {
-    display: flex; justify-content: space-between; align-items: baseline;
-    font-size: 0.92rem; color: var(--xira); margin-bottom: 6px; min-height: 1.6em;
-  }
-  .oyna__sarlavha strong { color: var(--siyoh); font-weight: 600; }
+
   textarea, .natija {
-    font: 400 1.08rem/1.6 var(--shrift); color: var(--siyoh);
+    font: 400 1.12rem/1.65 var(--shrift); color: var(--siyoh);
     border: 1px solid var(--chiziq); border-radius: var(--radius-kichik);
-    padding: 12px 14px; min-height: 220px; width: 100%;
+    padding: 14px 16px; min-height: 320px; width: 100%; margin: 0;
   }
   textarea { resize: vertical; background: var(--fon); }
   .natija { background: var(--fon); white-space: pre-wrap; overflow-wrap: anywhere; }
   .natija:empty::before { content: attr(data-bosh); color: var(--xira); }
-  .natija mark { background: var(--oxra-fon); color: inherit; border-bottom: 2px solid var(--oxra); border-radius: 2px; }
-  .oyna__pastki { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 10px; min-height: 36px; }
-  .oyna__pastki span { color: var(--xira); font-size: 0.92rem; margin-right: 2px; }
+  .natija mark {
+    background: var(--belgi-fon); color: var(--belgi-matn);
+    box-shadow: inset 0 -2px 0 var(--belgi-chiziq); border-radius: 3px; padding: 0 1px;
+  }
+  .oyna__pastki {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between;
+    margin-top: 10px; min-height: 38px;
+  }
+  .harf-tugmalar { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .harf-tugmalar span, .hisob { color: var(--xira); font-size: 0.92rem; }
   button {
     font: inherit; cursor: pointer; color: var(--siyoh); background: var(--sirt);
-    border: 1px solid var(--chiziq); border-radius: var(--radius-kichik); padding: 5px 12px;
+    border: 1px solid var(--chiziq); border-radius: var(--radius-kichik); padding: 6px 12px;
   }
   button:hover { border-color: var(--kobalt); }
   .tugma-harf { min-width: 40px; font-weight: 700; font-size: 1.05rem; }
@@ -126,7 +136,7 @@
 
   /* Murakkab holatlar */
   .misollar h2 { font-size: 1.5rem; letter-spacing: -0.01em; margin: 0 0 6px; }
-  .misollar > p { margin: 0 0 18px; color: var(--xira); max-width: 62ch; }
+  .misollar > p { margin: 0 0 18px; color: var(--xira); }
   .misollar ul { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--chiziq); }
   .misol {
     display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr) minmax(0, 1.4fr);
@@ -144,25 +154,30 @@
     margin-top: 56px; padding: 28px 0 40px; border-top: 1px solid var(--chiziq);
     color: var(--xira); font-size: 0.93rem;
   }
-  .oxiri p { margin: 0 0 8px; max-width: 70ch; }
+  .oxiri p { margin: 0 0 8px; }
 
+  /* Keng ekranda sarlavha va izohlar bitta satrda */
+  @media (min-width: 1120px) {
+    .kirish h1, .kirish p, .misollar > p, .oxiri p { white-space: nowrap; }
+  }
+  @media (max-width: 900px) {
+    .oynalar { grid-template-columns: 1fr; }
+    textarea, .natija { min-height: 200px; }
+  }
   @media (max-width: 760px) {
     .sahifa { padding: 0 16px; }
-    .kirish { padding: 20px 0 24px; }
+    .kirish { padding: 8px 0 22px; }
     .harflar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .harflar li:nth-child(3) { padding-left: 0; border-left: 0; }
-    .oynalar { grid-template-columns: 1fr; }
-    textarea, .natija { min-height: 150px; }
+    .harflar li:nth-child(n+3) { border-top: 1px solid var(--chiziq); margin-top: 10px; }
     .ogirgich { padding: 14px; }
     .misol { grid-template-columns: 1fr; }
     .tugma-harf { min-width: 34px; padding: 5px 8px; }
-    .oyna__pastki { gap: 6px; }
   }
   @media (prefers-reduced-motion: no-preference) {
     .natija { transition: opacity .15s; }
   }
   .natija[aria-busy="true"] { opacity: .55; }
-  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 </style>
 </head>
 <body>
@@ -188,44 +203,43 @@
     </section>
 
     <section class="ogirgich" id="ogirgich" aria-label="Matnni o‘girish">
-      <div class="boshqaruv">
-        <div class="tanlov" role="radiogroup" aria-label="Qaysi yozuvga o‘girish">
-          <input type="radio" name="maqsad" id="m-yangi" value="yangi" checked><label for="m-yangi">Yangi lotin</label>
-          <input type="radio" name="maqsad" id="m-lotin" value="lotin"><label for="m-lotin">Lotin</label>
-          <input type="radio" name="maqsad" id="m-krill" value="krill"><label for="m-krill">Krill</label>
-        </div>
-        <label class="boshqaruv__manba" for="manba">Lotin matn
-          <select id="manba">
-            <option value="">avtomatik aniqlansin</option>
-            <option value="latin">amaldagi lotinda</option>
-            <option value="new_latin">yangi lotinda</option>
-          </select>
-        </label>
-      </div>
-
       <div class="oynalar">
         <div class="oyna">
           <div class="oyna__sarlavha">
-            <label for="kirish"><strong>Matn</strong></label>
-            <span id="aniqlangan" aria-live="polite"></span>
+            <label class="oyna__nom" for="kirish">Matn</label>
+            <label class="yozuv" for="manba">Yozuvi
+              <select id="manba">
+                <option value="" id="avto-variant">Avtomatik</option>
+                <option value="cyrillic">Krill</option>
+                <option value="latin">Lotin</option>
+                <option value="new_latin">Yangi lotin</option>
+              </select>
+            </label>
           </div>
           <textarea id="kirish" spellcheck="false">Шу тизимни ўрганиш ва ишлатиш қобилиятига айтилади.</textarea>
           <div class="oyna__pastki">
-            <span id="harf-izoh">Harf qo‘shish:</span>
-            <button type="button" class="tugma-harf" data-harf="ö" aria-describedby="harf-izoh">ö</button>
-            <button type="button" class="tugma-harf" data-harf="ğ" aria-describedby="harf-izoh">ğ</button>
-            <button type="button" class="tugma-harf" data-harf="ş" aria-describedby="harf-izoh">ş</button>
-            <button type="button" class="tugma-harf" data-harf="ç" aria-describedby="harf-izoh">ç</button>
-            <button type="button" class="tugma-harf" data-harf="’" aria-describedby="harf-izoh" title="Tutuq belgisi">’</button>
+            <div class="harf-tugmalar">
+              <span id="harf-izoh">Harf qo‘shish:</span>
+              <button type="button" class="tugma-harf" data-harf="ö" aria-describedby="harf-izoh">ö</button>
+              <button type="button" class="tugma-harf" data-harf="ğ" aria-describedby="harf-izoh">ğ</button>
+              <button type="button" class="tugma-harf" data-harf="ş" aria-describedby="harf-izoh">ş</button>
+              <button type="button" class="tugma-harf" data-harf="ç" aria-describedby="harf-izoh">ç</button>
+              <button type="button" class="tugma-harf" data-harf="’" aria-describedby="harf-izoh" title="Tutuq belgisi">’</button>
+            </div>
           </div>
         </div>
         <div class="oyna">
           <div class="oyna__sarlavha">
-            <strong id="natija-nomi">Natija</strong>
-            <span id="nusxa-holat" aria-live="polite"></span>
+            <span class="oyna__nom" id="natija-nomi">Natija</span>
+            <div class="tanlov" role="radiogroup" aria-label="Natija yozuvi">
+              <input type="radio" name="maqsad" id="m-yangi" value="yangi" checked><label for="m-yangi">Yangi lotin</label>
+              <input type="radio" name="maqsad" id="m-lotin" value="lotin"><label for="m-lotin">Lotin</label>
+              <input type="radio" name="maqsad" id="m-krill" value="krill"><label for="m-krill">Krill</label>
+            </div>
           </div>
           <div class="natija" id="natija" role="region" aria-labelledby="natija-nomi" aria-live="polite" aria-busy="true" data-bosh="Natija shu yerda chiqadi"></div>
           <div class="oyna__pastki">
+            <span class="hisob" id="hisob" aria-live="polite"></span>
             <button type="button" id="nusxa">Nusxa olish</button>
           </div>
         </div>
@@ -252,7 +266,7 @@
   "use strict";
   const PYODIDE_URL = "https://cdn.jsdelivr.net/pyodide/v0.27.2/full/";
   const YOZUV_NOMI = {
-    cyrillic: "krill", latin: "amaldagi lotin", new_latin: "yangi lotin",
+    cyrillic: "krill", latin: "lotin", new_latin: "yangi lotin",
     mixed: "aralash", unknown: "",
   };
   const FUNKSIYA = { yangi: "to_new_latin", lotin: "to_latin", krill: "to_cyrillic" };
@@ -285,9 +299,14 @@
     const natijaMatn = manba.value ? f.callKwargs(matn, { source: manba.value }) : f(matn);
     natija.innerHTML = ajrat(natijaMatn, m);
     natija.dataset.matn = natijaMatn;
-    $("natija-nomi").textContent = MAQSAD_NOMI[m];
+
+    // Kirish yozuvi: avtomatik aniqlangani "Avtomatik" variantida ko‘rinadi
     const yozuv = YOZUV_NOMI[lky.detect_script(matn)];
-    $("aniqlangan").textContent = yozuv ? "Aniqlangan yozuv: " + yozuv : "";
+    $("avto-variant").textContent = yozuv ? "Avtomatik: " + yozuv : "Avtomatik";
+
+    // Natija ostida: nechta yangi harf
+    const soni = m === "yangi" ? (natijaMatn.match(YANGI_HARFLAR) || []).length : 0;
+    $("hisob").textContent = soni ? "Yangi alifbo harflari: " + soni + " ta" : "";
   }
 
   function rejala() {
@@ -310,14 +329,14 @@
   });
 
   $("nusxa").addEventListener("click", async () => {
-    const h = $("nusxa-holat");
+    const b = $("nusxa");
     try {
       await navigator.clipboard.writeText(natija.dataset.matn || "");
-      h.textContent = "Nusxa olindi";
+      b.textContent = "Nusxa olindi";
     } catch {
-      h.textContent = "Nusxa olinmadi: matnni belgilab, Ctrl+C bosing";
+      b.textContent = "Nusxa olinmadi: Ctrl+C bosing";
     }
-    setTimeout(() => { h.textContent = ""; }, 2500);
+    setTimeout(() => { b.textContent = "Nusxa olish"; }, 2000);
   });
 
   async function misollarniYukla() {
